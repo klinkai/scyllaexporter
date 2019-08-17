@@ -58,7 +58,7 @@ export AWS_DEFAULT_REGION=$S3_REGION
 
 echo "Creating dump of ${SCYLLADB_KEYSPACE} database from ${SCYYLADB_HOST}..."
 
-/backup/cql-exporter.sh -u $SCYLLADB_USER -p $SCYLLADB_PASSWORD -k $SCYLLADB_KEYSPACE -po $SCYLLADB_PORT
+/backup/cql-exporter.sh -h $SCYLLADB_HOST -u $SCYLLADB_USER -p $SCYLLADB_PASSWORD -k $SCYLLADB_KEYSPACE -po $SCYLLADB_PORT
 
 gzip /backup/"${$SCYLLADB_KEYSPACE}.CQL"
 
