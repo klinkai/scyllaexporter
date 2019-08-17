@@ -16,12 +16,12 @@ ENV S3_REGION us-west-1
 ENV S3_PATH 'backup'
 ENV S3_ENDPOINT **None**
 ENV S3_S3V4 no
-ENV SCHEDULE **None**
-
-ADD cql-exporter.jar cql-exporter.jar
-ADD cql-exporter.sh cql-exporter.sh 
-RUN chmod +x cql-exporter.sh
-ADD run.sh run.sh
-ADD backup.sh backup.sh
+RUN mkdir /backup
+WORKDIR /backup
+ADD cql-exporter.jar /backup/cql-exporter.jar
+ADD cql-exporter.sh /backup/cql-exporter.sh 
+RUN chmod +x /backup/cql-exporter.sh
+ADD run.sh /backup/run.sh
+ADD backup.sh /backup/backup.sh
 
 CMD ["sh", "run.sh"]
