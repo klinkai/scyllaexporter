@@ -60,12 +60,12 @@ echo "Creating dump of ${SCYLLADB_KEYSPACE} database from ${SCYYLADB_HOST}..."
 
 /backup/cql-exporter.sh -h $SCYLLADB_HOST -u $SCYLLADB_USER -p $SCYLLADB_PASSWORD -k $SCYLLADB_KEYSPACE -po $SCYLLADB_PORT
 
-gzip /backup/"${$SCYLLADB_KEYSPACE}.CQL"
+gzip /backup/"${SCYLLADB_KEYSPACE}.CQL"
 
 echo "Uploading dump to $S3_BUCKET"
 
-cat /backup/"${$SCYLLADB_KEYSPACE}.CQL.gz" | aws $AWS_ARGS s3 cp - s3://$S3_BUCKET/$S3_PREFIX/${SCYLLADB_KEYSPACE}_$(date +"%Y-%m-%dT%H:%M:%SZ").CQL.gz || exit 2
+cat /backup/"${SCYLLADB_KEYSPACE}.CQL.gz" | aws $AWS_ARGS s3 cp - s3://$S3_BUCKET/$S3_PREFIX/${SCYLLADB_KEYSPACE}_$(date +"%Y-%m-%dT%H:%M:%SZ").CQL.gz || exit 2
 
-rm -rf /backup/"${$SCYLLADB_KEYSPACE}.CQL.gz"
+rm -rf /backup/"${SCYLLADB_KEYSPACE}.CQL.gz"
 
 echo "ScyllaDB backup uploaded successfully"
