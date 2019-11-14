@@ -9,7 +9,7 @@
        # Email address used for ACME registration
        email: fabio.mazzo@klink.ai
        # Name of a secret used to store the ACME account private key
-       privateKeySecretRef:
+       privateKeySecretRef: letssecret
          name: letsencrypt-prod
        # Enable the HTTP-01 challenge provider
        solvers:
